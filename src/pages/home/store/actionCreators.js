@@ -1,4 +1,4 @@
-import axois from "axios";
+import axios from "axios";
 import * as constants from "./constants";
 import { fromJS } from "immutable";
 
@@ -17,7 +17,7 @@ const addHomeList = (list, nextPage) => ({
 
 export const getHomeInfo = () => {
   return (dispatch) => {
-    axois.get("api/home.json").then((res) => {
+    axios.get("api/home.json").then((res) => {
       const result = res.data.data;
       dispatch(changeHomeData(result));
     });
@@ -26,7 +26,7 @@ export const getHomeInfo = () => {
 
 export const getMoreList = (page) => {
   return (dispatch) => {
-    axois.get("api/homeList.json?page=" + page).then((res) => {
+    axios.get("api/homeList.json?page=" + page).then((res) => {
       const result = res.data.data;
       dispatch(addHomeList(result, page + 1));
     });
