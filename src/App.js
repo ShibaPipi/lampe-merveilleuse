@@ -1,23 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Provider } from "react-redux";
+import { HashRouter, Route } from "react-router-dom";
+import Header from "./common/header";
+import Home from "./pages/home";
+import Detail from "./pages/detail/loadable";
+import Login from "./pages/login";
+import Write from "./pages/write";
+import store from "./store";
+import { GlobalStyle } from './style';
+import { GlobalIconfont } from "./statics/iconfont/iconfont";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <GlobalStyle/>
+        <GlobalIconfont/>
+        <HashRouter>
+          <div>
+            <Header/>
+            <Route path="/" exact component={Home}/>
+            <Route path="/login" exact component={Login}/>
+            <Route path="/detail/:id" exact component={Detail}/>
+            <Route path="/write" exact component={Write}/>
+          </div>
+        </HashRouter>
+      </Provider>
+    );
+  }
 }
 
 export default App;
