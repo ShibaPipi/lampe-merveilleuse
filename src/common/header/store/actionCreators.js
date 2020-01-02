@@ -31,7 +31,7 @@ export const changePage = (page) => ({
 
 export const getList = () => {
   return (dispatch) => {
-    axios.get("api/headerList.json").then((res) => {
+    axios.get("api/v1/headerList.json").then((res) => {
       dispatch(changeList(res.data.words));
     }).catch(() => {
       console.log("error");
