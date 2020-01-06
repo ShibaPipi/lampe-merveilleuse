@@ -9,13 +9,13 @@ export function getAuthHeader(sso_token) {
       'Authorization': sso_token,
       'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
-    },
+    }
   });
 }
 
 export function redirectLogin() {
   localStorage.clear();
-  window.location.href = config.redirectUrl + window.location.origin;
+  window.location.href = config.domain + window.location.origin;
 }
 
 export function authenticated() {

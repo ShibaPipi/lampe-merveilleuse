@@ -1,8 +1,8 @@
-import React, { PureComponent } from "react";
-import { ListItem, ListInfo, LoadMore } from "../style";
-import { connect } from "react-redux";
-import { actionCreators } from "../store";
-import { Link } from "react-router-dom";
+import React, { PureComponent } from 'react';
+import { ListItem, ListInfo, LoadMore } from '../style';
+import { connect } from 'react-redux';
+import { actionCreators } from '../store';
+import { Link } from 'react-router-dom';
 
 class List extends PureComponent {
   render() {
@@ -10,14 +10,14 @@ class List extends PureComponent {
     return (
       <div>
         {list.map((item, index) => (
-          <Link to={"/detail/" + item.get("id")} key={index}>
+          <Link to={'/detail/' + item.get('id')} key={index}>
             <ListItem>
-              <img className="list-img"
-                   src={item.get("imgUrl")}
-                   alt=""/>
+              <img className='list-img'
+                   src={item.get('imgUrl')}
+                   alt=''/>
               <ListInfo>
-                <h3 className="item">{item.get("title")}</h3>
-                <p className="desc">{item.get("desc")}</p>
+                <h3 className='item'>{item.get('title')}</h3>
+                <p className='desc'>{item.get('desc')}</p>
               </ListInfo>
             </ListItem>
           </Link>
@@ -29,8 +29,8 @@ class List extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  list: state.getIn(["home", "articleList"]),
-  page: state.getIn(["home", "articlePage"]),
+  list: state.getIn(['home', 'articleList']),
+  page: state.getIn(['home', 'articlePage']),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,5 +1,5 @@
-import { fromJS } from "immutable";
-import * as constants from "./constants";
+import { fromJS } from 'immutable';
+import * as constants from './constants';
 
 const defaultState = fromJS({
   topicList: [],
@@ -19,8 +19,8 @@ const changeHomeData = (state, action) => {
 
 const addArticleList = (state, action) => {
   return state.merge({
-    "articleList": state.get("articleList").concat(action.list),
-    "articlePage": action.nextPage,
+    'articleList': state.get('articleList').concat(action.list),
+    'articlePage': action.nextPage,
   });
 };
 
@@ -31,7 +31,7 @@ export default (state = defaultState, action) => {
     case constants.ADD_ARTICLE_LIST:
       return addArticleList(state, action);
     case constants.SCROLL_TO_TOP_SHOW:
-      return state.set("showScroll", action.show);
+      return state.set('showScroll', action.show);
     default:
       return state;
   }

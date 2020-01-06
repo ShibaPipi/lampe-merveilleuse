@@ -1,63 +1,45 @@
-import fetch from 'axios';
-import { getAuthHeader, redirectLogin } from './auth';
-import { message } from 'antd';
+import axios from 'axios'
 
-function checkStatus(response) {
-  if (401 === response.code) {
-    redirectLogin();
-  }
-
-  if (response.status >= 200 && response.status < 300) {
-    return response.data;
-  }
-
-  const msg = response.data.message ? response.data.message : '接口格式返回错误';
-  message.error(msg);
-
-  throw Object.assign(new Error(`${response.statusText}:${msg}`), {
-    response
-  });
-  // const { status, message } = responseJson;
-  // if ('error' === status) {
-  //   throw new Error(message);
-  // }
-  //
-  // return responseJson;
-}
-
-function checkData(response) {
-  if (true === response.success) {
-    return response;
-  }
-
-  if (response.message) {
-    message.error(response.message);
-  } else {
-    throw Object.assign(new Error(response.message || '请求失败'), {
-      response
-    });
-  }
-}
+import './requestConfig'
+import { log } from './helper';
+import { getAuthHeader } from './auth';
 
 /**
  * Requests a URL, returning a promise.
  *
- * @param  {string} url       The URL we want to request
- * @param  {object} [options] The options we want to pass to "fetch"
- * @return {object}           An object containing either "data" or "err"
+ * @param  {string} [url] The URL we want to request
+ * @param  {object} [_options] The options we want to pass to 'fetch'
+ * @return {axios}
  */
-export default async function request(url, options) {
-  // const authHeader = getAuthHeader(localStorage.getItem('jwToken'));
-  // const response = await fetch(url, { ...options, ...authHeader });
-  //
-  // checkStatus(response);
-  //
-  // return response;
-  return await fetch(url, { ...getAuthHeader(localStorage.getItem('jwToken')), ...options })
-    .then(checkStatus)
-    .then(checkData)
-    .then(data => ({ ...data }))
-    .catch((error) => {
-      throw error
-    });
-}
+const request = async (url, _options) => {
+  // 默认GET方法
+
+  return axios({
+    url,
+    ...getAuthHeader(localStorage.getItem('jwToken')),
+    ..._options
+  })
+};
+
+/**
+ * 封装get请求
+ * @param { String } url 请求路径
+ * @param { Object } _options 请求参数
+ * @param _options GET请求参数，对象形式
+ */
+const get = (url, _options) => {
+  return request(url,  ..._options)
+};
+
+/**
+ * 封装post请求
+ * @param { String } url 请求路径
+ * @param _options POST请求请求参数，对象形式
+ */
+const post = (url, _options) => {
+  return request(url, ..._options)
+};
+
+export { get, post };
+
+export default request;
