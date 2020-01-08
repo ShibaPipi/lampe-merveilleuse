@@ -24,7 +24,7 @@ class Home extends PureComponent {
           <List/>
         </HomeLeft>
         <HomeRight>
-          <Recommend></Recommend>
+          <Recommend/>
           <Writer/>
         </HomeRight>
         {

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Provider } from "react-redux";
-import { HashRouter, Route } from "react-router-dom";
-import Header from "./common/header";
-import Home from "./pages/home";
-import Detail from "./pages/detail/loadable";
-import Login from "./pages/login";
-import Write from "./pages/write";
-import store from "./store";
+import { Provider } from 'react-redux';
+import { HashRouter, Route } from 'react-router-dom';
+import Header from './common/header';
+import Home from './pages/home';
+import Detail from './pages/detail/loadable';
+import Login from './pages/login';
+import Write from './pages/write';
+import store from './store';
 import { GlobalStyle } from './style';
-import { GlobalIconfont } from "./statics/iconfont/iconfont";
+import { GlobalIconfont } from './statics/iconfont/iconfont';
 
 class App extends Component {
   render() {
@@ -19,10 +19,10 @@ class App extends Component {
         <HashRouter>
           <div>
             <Header/>
-            <Route path="/" exact component={Home}/>
-            <Route path="/login" exact component={Login}/>
-            <Route path="/detail/:id" exact component={Detail}/>
-            <Route path="/write" exact component={Write}/>
+            <Route path='/' exact component={Home}/>
+            <Route path='/login' exact component={Login}/>
+            <Route path='/detail/:id' exact component={Detail}/>
+            <Route path='/write' exact component={Write}/>
           </div>
         </HashRouter>
       </Provider>
